@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body onload="onInit()">
-<h1> MINESWEEPER</h1>
+
 
     <div class="game">
-       <table class="board">
+        <h1> MINESWEEPER</h1>
+        <table class="board">
 
-       </table> 
+        </table>
+
+        <button onclick="changeBoardSize(4,3)">Begginer</button>
+        <button onclick="changeBoardSize(8,14)">Medium</button>
+        <button onclick="changeBoardSize(12,32)">Expert</button>
+
+        <h2><span class="heart">&#x2665&#x2665&#x2665 </span><span class="restart" onclick="onInit()">| &#x1F600</span> </h2>
 
     </div>
-   <script src="js/main.js"></script> 
+
+    <footer>
+        &copy; Ofir Bozna Nidam. 2024
+    </footer>
+    <script src="js/main.js"></script>
 </body>
+
 </html>

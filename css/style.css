@@ -3,31 +3,81 @@ body{
 }
 
 h1{
-    color: brown;
-    
+    color: rgb(36, 63, 60);
+    font-family:'Courier New', Courier, monospace;
+    font-size: 35px;
+     
+}
+h2{
+    color: rgb(23, 43, 40);
+    font-family:'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    padding-top: 15px;
+
+}
+.heart{
+    color: rgb(201, 33, 33);
+    font-size: xx-large;
 }
 
+div{
+    
+    background-color: rgb(204, 203, 132);
+    margin: 30px auto;
+    padding: 20px 40px 70px 40px;
+    width: fit-content;
+}
 
 .board{
-    border: 2px solid palevioletred;
+    border-spacing: 0.2px;
+    /* border: 2px solid hsl(17, 77%, 36%); */
     margin: 0 auto;
     font-size: x-large;
     
     text-align: center;
     color:white;
     background-color: palevioletred ;
+    
 
 }
 
 .cell{
-    background-color: rgb(168, 51, 51);
-    height: 30px;
-    width: 30px;
+    border-bottom:3px solid hsl(17, 77%, 20%);
+    border-right: 3px solid hsl(17, 77%, 20%);
+    border-left: 3px solid  hsl(17, 77%, 50%);
+    border-top: 3px solid hsl(17, 77%, 50%);
+    background-color:hsl(17, 77%, 36%);
+    height: 25px;
+    width: 25px;
+    cursor: pointer ;
+    
     
 }
 img{
-    height: 25px;
-    width: 25px;
-    /* display: none; */
+    height: 20px;
+    width: 20px;
+   
     
+}
+button{
+    margin-top: 30px;
+}
+footer{
+    margin-top:  100px;
+    text-align: left;
+}
+
+.shown{
+    background-color: hsl(17, 77%, 36%);
+    border-top:1px solid hsl(17, 77%, 50%);
+    border-left: 1px solid hsl(17, 77%, 50%);
+    border-right: 1px solid  hsl(17, 77%, 36%);
+    border-bottom: 1px solid hsl(17, 77%, 36%)
+}
+
+.restart{
+    cursor: pointer;
+    font-size: larger;
 }
