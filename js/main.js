@@ -12,9 +12,21 @@ var gGame = {
     secsPassed: 0,
 }
 var gEmptyCells = []
+var gCheckedCells = []
 var gIsFlaged = false
 var gIsMinesSet = false
 var gLives = 3
+var gTimer
+var gStartTime = 0
+var elapsedTime = 0
+var gIsRuning = false
+var gElTimer = document.querySelector('.timer')
+gElTimer.innerText = '00:00:00:00'
+var gIsHintPressed = false
+var gBestScore=Infinity
+
+
+
 const MINE_IMG = '<img src="img/mine.png">'
 const FLAG_IMG = '<img src="img/flag.png">'
 
@@ -29,8 +41,10 @@ function onInit() {
     gBoard = buildBoard()
     renderBoard(gBoard)
     gIsMinesSet = false
-
-
+    gStartTime = 0
+    elapsedTime = 0
+    gIsRuning = false
+    gElTimer.innerText = '00:00:00:00'
 
 }
 
@@ -87,6 +101,7 @@ function renderBoard(board) {
 
 
 function changeBoardSize(size, minesNum) {
+    clearInterval(gTimer)
     gLevel.size = size
     gLevel.mines = minesNum
     onInit()
@@ -152,49 +167,60 @@ function getEmptyCells(board) {
 
         }
     }
+    console.log(gEmptyCells)
     return gEmptyCells
 }
 
 
 //called when a cell is clicked
 function onCellClicked(elCell, i, j) {
-    var elHeart = document.querySelector('.heart')
-    var elRestartBtn = document.querySelector('.restart')
+    setTimer()
     if (!gGame.isOn) return
     const currCell = gBoard[i][j]
     if (currCell.isMarked) return
+
     //modal
     currCell.isShown = true
     //DOM
     elCell.classList.add('shown')
     getRandomMinesLocation(gBoard, gLevel.mines)
     setTheMinesNegsCount(gBoard)
-    if (currCell.isMine) {
-        gLives--
-        gGame.shownCount++
-        if (gLives === 2) elHeart.innerHTML = '&#x2665&#x2665'
-        if (gLives === 1) elHeart.innerHTML = '&#x2665'
-            elCell.innerHTML = MINE_IMG
-        if (gLives === 0) {
-            gGame.isOn = false
-            console.log('GAME OVER')
-            //DO
-            showMinesCells()
-            elHeart.innerHTML = '--'
-            elRestartBtn.innerHTML = ' | &#x1F635;&#x200D;&#x1F4AB;'
-        }
-    } else if (!currCell.isMine && currCell.minesAroundCount !== 0 && currCell.isShown === true) {
-        gGame.shownCount++
-        //DOM
-        elCell.innerText = currCell.minesAroundCount
+    console.log(gBoard)
 
-    } else if (currCell.minesAroundCount === 0 && currCell.isShown === true) {
-        gGame.shownCount++
-        expendShown(gBoard, elCell, i, j)
-
+    if (gIsHintPressed) {
+        getHint(elCell, i, j)
     }
-    checkGameOver()
 
+
+    if (!gIsHintPressed) {
+        var elHeart = document.querySelector('.heart')
+        var elRestartBtn = document.querySelector('.restart')
+        if (currCell.isMine) {
+            gLives--
+            gGame.shownCount++
+            if (gLives === 2) elHeart.innerHTML = '&#x2665&#x2665'
+            if (gLives === 1) elHeart.innerHTML = '&#x2665'
+            elCell.innerHTML = MINE_IMG
+            if (gLives === 0) {
+                gGame.isOn = false
+                console.log('GAME OVER')
+                showMinesCells()
+                elHeart.innerHTML = '--'
+                elRestartBtn.innerHTML = ' | &#x1F635;&#x200D;&#x1F4AB;'
+                clearInterval(gTimer)
+            }
+        } else if (!currCell.isMine && currCell.minesAroundCount !== 0 && currCell.isShown === true) {
+            gGame.shownCount++
+            //DOM
+            elCell.innerText = currCell.minesAroundCount
+
+        } else if (currCell.minesAroundCount === 0 && currCell.isShown === true) {
+            gGame.shownCount++
+            expendShown(gBoard, elCell, i, j)
+
+        }
+        checkGameOver()
+    }
 }
 
 
@@ -207,12 +233,12 @@ function onCellMarekd(event, elCell, i, j) {
         currCell.isMarked = true
         //DOM
         elCell.innerHTML = FLAG_IMG
-        if(currCell.isMine) gGame.markedCount++
+        if (currCell.isMine) gGame.markedCount++
 
     } else if (currCell.isMarked) {
         currCell.isMarked = false
         elCell.innerHTML = ''
-        if(currCell.isMine) gGame.markedCount--
+        if (currCell.isMine) gGame.markedCount--
     }
     checkGameOver()
 }
@@ -220,18 +246,36 @@ function onCellMarekd(event, elCell, i, j) {
 
 // game ends when all the other cells are shown
 function checkGameOver() {
-    if(gLives === 0)return
+    if (gLives === 0) return
     const numOfCells = Math.pow(gLevel.size, 2)
     console.log('show', gGame.shownCount)
     console.log('markes', gGame.markedCount)
-    if (gGame.shownCount + gGame.markedCount === numOfCells ) {
+    if (gGame.shownCount + gGame.markedCount === numOfCells) {
         console.log('winnerrr!!')
         gGame.isOn = false
         var elRestartBtn = document.querySelector('.restart')
         elRestartBtn.innerHTML = ' | &#x1F60E '
+        clearInterval(gTimer)
+        checkBestScore()
     }
 
 }
+
+
+function checkBestScore() {
+    // if (gLives === 0) return
+    // if (gGame.shownCount + gGame.markedCount === numOfCells) {
+    if (gGame.secsPassed < gBestScore) {
+        gBestScore = gGame.secsPassed
+
+    }
+    console.log(gBestScore)
+    localStorage.bestScore = gBestScore
+    var elBesrScore= document.querySelector('.bestscore')
+    elBesrScore.innerHTML = localStorage.bestScore
+}
+
+
 
 function showMinesCells() {
     for (var i = 0; i < gBoard.length; i++) {
@@ -246,7 +290,7 @@ function showMinesCells() {
     }
 }
 
-var gCheckedCells = []
+
 //when user clickes a cell with no mines around we need to open not only that cell but also its neightbors
 function expendShown(board, elCell, rowIdx, colIdx) {
     var numOfShownCells = 0
@@ -287,6 +331,102 @@ function expendShown(board, elCell, rowIdx, colIdx) {
     gGame.shownCount += numOfShownCells
 }
 
+function hintPress(elHint) {
+    if (elHint.classList.contains('used')) return
+    gIsHintPressed = true
+    elHint.innerHTML = '&#x1F505'
+    elHint.classList.add('used')
+}
+
+function getHint(elCell, rowIdx, colIdx) {
+
+    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+        if (i < 0 || i >= gBoard.length) continue
+
+        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+            if (j < 0 || j >= gBoard[i].length) continue
+            if (i === rowIdx && j === colIdx) continue
+            const currCell = gBoard[i][j]
+            const selector = `[data-i="${i}"][data-j="${j}"]`
+            const elNegCell = document.querySelector(selector)
+
+            if (currCell.minesAroundCount !== 0) {
+                //modal
+                currCell.isShown = true
+                //DOM
+                elNegCell.innerText = currCell.minesAroundCount
+                elNegCell.classList.add('shown')
+
+            } else {
+                currCell.isShown = true
+                elNegCell.classList.add('shown')
+            }
+        }
+    }
+    console.log(gBoard)
+
+    setTimeout(() => {
+        hideHint(elCell, rowIdx, colIdx)
+
+    }, 1000);
+}
+
+function hideHint(elCell, rowIdx, colIdx) {
+    gBoard[colIdx][rowIdx].isShown = false
+    elCell.innerText = ''
+    elCell.classList.remove('shown')
+
+    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+        if (i < 0 || i >= gBoard.length) continue
+
+        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+            if (j < 0 || j >= gBoard[i].length) continue
+            if (i === rowIdx && j === colIdx) continue
+            const currCell = gBoard[i][j]
+            const selector = `[data-i="${i}"][data-j="${j}"]`
+            const elNegCell = document.querySelector(selector)
+
+            //modal
+            currCell.isShown = false
+            //DOM
+            elNegCell.innerText = ''
+            elNegCell.classList.remove('shown')
+
+        }
+    }
+    gIsHintPressed = false
+
+}
+
+function setTimer() {
+    if (!gIsRuning) {
+        gStartTime = Date.now() - elapsedTime
+        gTimer = setInterval(updateTimer, 31)
+        gIsRuning = true
+    }
+
+}
+
+function updateTimer() {
+    const currTime = Date.now()
+    elapsedTime = currTime - gStartTime
+
+    var hours = Math.floor(elapsedTime / (1000 * 60 * 60))
+    var minutes = Math.floor(elapsedTime / (1000 * 60) % 60)
+    var seconds = Math.floor(elapsedTime / 1000 % 60)
+    var milSeconds = Math.floor(elapsedTime % 1000 / 10)
+
+
+    hours = String(hours).padStart(2, '0')
+    minutes = String(minutes).padStart(2, '0')
+    seconds = String(seconds).padStart(2, '0')
+    milSeconds = String(milSeconds).padStart(2, '0')
+
+    gElTimer.innerText = `${hours}:${minutes}:${seconds}:${milSeconds}`
+    gGame.secsPassed = elapsedTime / 1000
+    console.log(gGame.secsPassed)
+
+}
 
 function getRandomInt(min, max) {
     const minCeiled = Math.ceil(min);

@@ -1,83 +1,117 @@
-body{
+body {
     text-align: center;
 }
 
-h1{
+h1 {
     color: rgb(36, 63, 60);
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 35px;
-     
+
 }
-h2{
+
+h2 {
     color: rgb(23, 43, 40);
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 20px;
     font-weight: bold;
     text-align: left;
     padding-top: 15px;
 
 }
-.heart{
+
+.heart {
     color: rgb(201, 33, 33);
     font-size: xx-large;
 }
 
-div{
-    
+div {
+
     background-color: rgb(204, 203, 132);
     margin: 30px auto;
     padding: 20px 40px 70px 40px;
     width: fit-content;
 }
 
-.board{
+.board {
     border-spacing: 0.2px;
     /* border: 2px solid hsl(17, 77%, 36%); */
     margin: 0 auto;
     font-size: x-large;
-    
+
     text-align: center;
-    color:white;
-    background-color: palevioletred ;
-    
+    color: white;
+    background-color: palevioletred;
+    border: 2px solid hsl(17, 77%, 0%);
+
 
 }
 
-.cell{
-    border-bottom:3px solid hsl(17, 77%, 20%);
+.cell {
+    border-bottom: 3px solid hsl(17, 77%, 20%);
     border-right: 3px solid hsl(17, 77%, 20%);
-    border-left: 3px solid  hsl(17, 77%, 50%);
+    border-left: 3px solid hsl(17, 77%, 50%);
     border-top: 3px solid hsl(17, 77%, 50%);
-    background-color:hsl(17, 77%, 36%);
+    background-color: hsl(17, 77%, 36%);
     height: 25px;
     width: 25px;
-    cursor: pointer ;
-    
-    
+    cursor: pointer;
+
+
 }
-img{
+
+img {
     height: 20px;
     width: 20px;
-   
-    
+
+
 }
-button{
+
+button {
     margin-top: 30px;
 }
-footer{
-    margin-top:  100px;
+
+footer {
+    margin-top: 100px;
     text-align: left;
 }
 
-.shown{
+.shown {
     background-color: hsl(17, 77%, 36%);
-    border-top:1px solid hsl(17, 77%, 50%);
+    border-top: 1px solid hsl(17, 77%, 50%);
     border-left: 1px solid hsl(17, 77%, 50%);
-    border-right: 1px solid  hsl(17, 77%, 36%);
+    border-right: 1px solid hsl(17, 77%, 36%);
     border-bottom: 1px solid hsl(17, 77%, 36%)
 }
 
-.restart{
+.restart {
     cursor: pointer;
     font-size: larger;
+}
+
+.timer{
+    text-align: center;
+    font-weight: bolder;
+}
+.hint{
+    font-size: larger;
+    cursor: pointer;
+}
+.used{
+    font-size: larger;
+
+}
+
+button{
+    background-color: hsl(163, 25%, 69%);
+    color: rgb(21, 27, 21);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight:bolder;
+    border: 1px solid rgb(27, 48, 45);
+    box-shadow: 2px 2px 2px hsla(0, 0%, 1%, 0.308); 
+    padding-top: 2px;
+    padding-bottom: 3px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 40px;
+    
 }
