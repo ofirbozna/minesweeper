@@ -21,11 +21,16 @@
         <button onclick="changeBoardSize(8,14)">Medium</button>
         <button onclick="changeBoardSize(12,32)">Expert</button>
 
-        <h2><span class="heart">&#x2665&#x2665&#x2665 </span><span class="restart" onclick="onInit()">&#x1F600</span><span class="hint hint1" onclick="hintPress(this)">&#x1F4A1</span><span class="hint hint2" onclick="hintPress(this)">&#x1F4A1</span><span class="hint hint3" onclick="hintPress(this)">&#x1F4A1</span></h2>
-
+        <h2><span class="heart">&#x2665&#x2665&#x2665 </span><span class="restart" onclick="onInit()">&#x1F600</span><span class="hint hint1" onclick="hintPress(this)">&#x1F4A1</span><span class="hint hint2" onclick="hintPress(this)">&#x1F4A1</span><span class="hint hint3" onclick="hintPress(this)">&#x1F4A1</span><span class="megahint" onclick="megaHintPress()">&#x1F4A1</span></h2>
+        <p class="megahinttxt">Mega<br> Hint</p>
+        <button class="safeclick" onclick="getSafeCell()"> Safe Click</button>
+        <button onclick="undo()">Undo</button>
+        <button onclick="makeYourBoard()">Make Your Board</button>
+        <p><span class="clicks">3</span> Clicks</p>
         
         <h2 class="timer">00:00:00</h2>
         <h2 class="score">BEST SCORE: <span class="bestscore"></span></h2>
+        <button onclick="getDarkMode(this)">Dark Mode</button>
 
     </div>
 
