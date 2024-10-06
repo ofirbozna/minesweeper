@@ -1,6 +1,6 @@
 body {
     text-align: center;
-    background-image: url('/img/darkbackground2.jpg');
+    background-image: url(../img/darkbackground2.jpg);
     background-size: cover;
     background-position: center; 
     background-repeat: no-repeat;
