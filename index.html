@@ -4,32 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mine Sweeper</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/mine.png" type="image/png">
 </head>
 
 <body onload="onInit()">
-
-
     <div class="game">
         <h1> MINESWEEPER</h1>
         <table class="board">
-
         </table>
 
         <button onclick="changeBoardSize(4,3)">Begginer</button>
         <button onclick="changeBoardSize(8,14)">Medium</button>
         <button onclick="changeBoardSize(12,32)">Expert</button>
 
-        <h2><span class="heart">&#x2665&#x2665&#x2665 </span><span class="restart" onclick="onInit()">&#x1F600</span><span class="hint hint1" onclick="hintPress(this)">&#x1F4A1</span><span class="hint hint2" onclick="hintPress(this)">&#x1F4A1</span><span class="hint hint3" onclick="hintPress(this)">&#x1F4A1</span><span class="megahint" onclick="megaHintPress()">&#x1F4A1</span></h2>
-        <p class="megahinttxt">Mega<br> Hint</p>
-        <button class="safeclick" onclick="getSafeCell()"> Safe Click</button>
-        <button onclick="undo()">Undo</button>
-        <button onclick="makeYourBoard()">Make Your Board</button>
-        <p><span class="clicks">3</span> Clicks</p>
-        
+        <p>
+        <div class="mega-hint">
+            <span onclick="megaHintPress()" onmouseover="showMegaHintInstractions()"
+                onmouseout="hideMegaHintInstractions()">&#x1F4A1</span>
+            <p class="mega-hint-txt">Mega Hint</p>
+        </div>
+
+        <span class="hint hint1" onclick="hintPress(this)" onmouseover="showHintInstractions()"
+            onmouseout="hideHintInstractions()">&#x1F4A1</span>
+        <span class="hint hint2" onclick="hintPress(this)" onmouseover="showHintInstractions()"
+            onmouseout="hideHintInstractions()">&#x1F4A1</span>
+        <span class="hint hint3" onclick="hintPress(this)" onmouseover="showHintInstractions()"
+            onmouseout="hideHintInstractions()">&#x1F4A1</span>|
+        <span class="restart" onclick="onInit()" onmouseover="showRestartInstractions()"
+            onmouseout="hideRestartInstractions()">&#x1F600</span> |
+        <span class="heart">&#x2665&#x2665&#x2665 </span>
+        </p>
+
+
+        <div class="safe-click-container">
+            <button class="safe-click" onclick="getSafeCell()" onmouseover="showSafeClickInstractions()" onmouseout="hideSafeClickInstractions()"> Safe Click
+            </button>
+            <p class="safe-click-txt"><span class="clicks">3</span> Clicks</p>
+        </div>
+        <button onclick="undo()" onmouseover="showUndoInstractions()" onmouseout="hideUndoInstractions()">Undo</button>
+        <button onclick="makeYourBoard()" onmouseover="showMakeYourBoardInstractions()"
+            onmouseout="hideMakeYourBoardInstractions()">Make Your Board</button>
+        <div class="instraction">
+        </div>
+
         <h2 class="timer">00:00:00</h2>
-        <h2 class="score">BEST SCORE: <span class="bestscore"></span></h2>
+        <h2 class="score">BEST SCORE: <span class="best-score"></span></h2>
         <button onclick="getDarkMode(this)">Dark Mode</button>
 
     </div>
@@ -37,7 +58,13 @@
     <footer>
         &copy; Ofir Bozna Nidam. 2024
     </footer>
+
+    <script src="js/util.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/instractions.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/extrafeatures.js"></script>
+    <script src="js/bestscore.js"></script>
 </body>
 
 </html>

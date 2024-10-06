@@ -1,13 +1,16 @@
 body {
     text-align: center;
-    background-color: hsl(163, 25%, 90%)
+    background-image: url('/img/background.jpg');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h1 {
     color: rgb(36, 63, 60);
     font-family: 'Courier New', Courier, monospace;
     font-size: 35px;
-
 }
 
 h2 {
@@ -17,17 +20,58 @@ h2 {
     font-weight: bold;
     text-align: left;
     margin-top: 10px;
-
 }
 
-.heart {
-    color: rgb(201, 33, 33);
-    font-size: xx-large;
+p {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: rgb(23, 43, 40);
 }
 
-div {
+button {
+    background-color: hsl(170, 71%, 74%);
+    color: rgb(21, 27, 21);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    border: 1px solid rgb(27, 48, 45);
+    box-shadow: 2px 2px 2px hsla(0, 0%, 1%, 0.308);
+    padding-top: 1px;
+    padding-bottom: 3px;
+    padding-left: 8px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
 
-    background-color: rgb(204, 203, 132);
+button:hover {
+    background-color: hsl(163, 25%, 79%);
+    box-shadow: 5px 5px 5px hsla(0, 0%, 1%, 0.308);
+}
+
+img {
+    height: 20px;
+    width: 20px;
+}
+
+footer {
+    margin-top: 100px;
+    text-align: left;
+}
+
+.instraction {
+    display: none;
+    text-align: left;
+    padding: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: rgb(23, 43, 40);
+    background-color: hsla(192, 100%, 61%, 0.671);
+    border-radius: 5px;
+}
+
+.game {
+    background-color: rgba(255, 255, 255, 0.253);
     margin: 30px auto;
     padding: 20px 40px 70px 40px;
     width: fit-content;
@@ -38,14 +82,9 @@ div {
     margin: 0 auto;
     margin-bottom: 15px;
     font-size: x-large;
-
     text-align: center;
     color: white;
-    background-color: palevioletred;
     border: 2px solid hsl(17, 77%, 0%);
-
-
-
 }
 
 .cell {
@@ -54,24 +93,9 @@ div {
     border-left: 3px solid hsl(17, 77%, 50%);
     border-top: 3px solid hsl(17, 77%, 50%);
     background-color: hsl(17, 77%, 36%);
-    height: 25px;
-    width: 25px;
+    height: 27px;
+    width: 27px;
     cursor: pointer;
-
-
-}
-
-img {
-    height: 20px;
-    width: 20px;
-
-
-}
-
-
-footer {
-    margin-top: 100px;
-    text-align: left;
 }
 
 .shown {
@@ -80,13 +104,25 @@ footer {
     border-left: 1px solid hsl(17, 77%, 50%);
     border-right: 1px solid hsl(17, 77%, 36%);
     border-bottom: 1px solid hsl(17, 77%, 36%);
-    height: 29px;
-    width: 29px;
+    height: 31px;
+    width: 31px;
+}
+
+.heart {
+    color: rgb(201, 33, 33);
+    font-size: xx-large;
+    margin-left: 20px;
 }
 
 .restart {
     cursor: pointer;
-    font-size: larger;
+    font-size: 30px;
+    margin: 10px;
+}
+
+.restart:hover {
+    font-size: 26px;
+    margin: 13px;
 }
 
 .timer {
@@ -95,29 +131,16 @@ footer {
 }
 
 .hint {
-    font-size: larger;
+    font-size: 25px;
     cursor: pointer;
+}
+
+.hint3 {
+    margin-right: 20px;
 }
 
 .used {
-    font-size: larger;
-
-}
-
-button {
-    background-color: hsl(163, 25%, 69%);
-    color: rgb(21, 27, 21);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bolder;
-    border: 1px solid rgb(27, 48, 45);
-    box-shadow: 2px 2px 2px hsla(0, 0%, 1%, 0.308);
-    padding-top: 2px;
-    padding-bottom: 3px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    margin-top: 15px;
-    cursor: pointer;
-
+    font-size: 25px;
 }
 
 .score {
@@ -125,33 +148,32 @@ button {
     text-align: center;
 }
 
-.safe {
-    background-color: hsl(163, 25%, 69%);
-    border-top: 3px solid hsl(163, 25%, 89%);
-    border-left: 3px solid hsl(163, 25%, 89%);
-    border-right: 3px solid hsl(163, 25%, 49%);
-    border-bottom: 3px solid hsl(163, 25%, 49%);
+.safe-click {
     margin-bottom: 0px;
-
 }
 
-p {
-    margin-top: 0px;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    color: rgb(23, 43, 40);
-    text-align: left;
-    margin-left: 35px;
-
+.safe-click-container {
+    display: inline-table;
 }
 
-.megahint {
-    font-size: 50px;
+.safe-click-txt {
+    margin-top: 8px;
+}
 
+.mega-hint {
+    display: inline-table;
+    font-size: 40px;
     cursor: pointer;
 }
 
-.megahinttxt{
-    text-align: right;
-    margin-right: 10px;
+.mega-hint-txt {
+    font-size: 0.3em;
+    padding-left: 2px;
+}
+
+.used-mega {
+    background-color: hsla(17, 87%, 45%, 0.568);
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 2px;
 }
