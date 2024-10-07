@@ -72,7 +72,7 @@ function hideRestartInstractions() {
 
 function showUndoInstractions() {
     const elInstractions = document.querySelector('.instraction')
-    elInstractions.innerHTML = 'Go back one step, you will not<br> get back life and hints.'
+    elInstractions.innerHTML = 'Go back one step, you will <br> get back life only on medium <br> and expert levels. you will <br>not get back hints.'
     elInstractions.style.display = 'block'
 }
 
