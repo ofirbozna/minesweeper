@@ -2,7 +2,7 @@ body {
     text-align: center;
     background-image: url('../img/background.jpg');
     background-size: cover;
-    background-position: center; 
+    background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -98,6 +98,15 @@ footer {
     cursor: pointer;
 }
 
+.safe {
+    background-color: hsl(163, 25%, 69%);
+    border-top: 3px solid hsl(163, 25%, 89%);
+    border-left: 3px solid hsl(163, 25%, 89%);
+    border-right: 3px solid hsl(163, 25%, 49%);
+    border-bottom: 3px solid hsl(163, 25%, 49%);
+    margin-bottom: 0px;
+}
+
 .shown {
     background-color: hsl(17, 77%, 36%);
     border-top: 1px solid hsl(17, 77%, 50%);
@@ -126,8 +135,14 @@ footer {
 }
 
 .timer {
-    text-align: center;
+    display: flexbox;
     font-weight: bolder;
+    float: right;
+}
+
+.mines {
+    display: flexbox;
+    margin-left: 50px;
 }
 
 .hint {

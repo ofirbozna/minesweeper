@@ -59,9 +59,9 @@ function hideHint(elCell, rowIdx, colIdx) {
             const selector = `[data-i="${i}"][data-j="${j}"]`
             const elNegCell = document.querySelector(selector)
 
-            if(!currCell.isShown){
-            elNegCell.innerText = ''
-            elNegCell.classList.remove('shown')
+            if (!currCell.isShown) {
+                elNegCell.innerText = ''
+                elNegCell.classList.remove('shown')
             }
         }
     }
@@ -131,9 +131,9 @@ function getMegaHint(cell1, cell2) {
                 elNegCell.innerText = ''
             }
             setTimeout(() => {
-                if(!currCell.isShown){
-                elNegCell.innerText = ''
-                elNegCell.classList.remove('shown')
+                if (!currCell.isShown) {
+                    elNegCell.innerText = ''
+                    elNegCell.classList.remove('shown')
                 }
             }, 2000);
         }
@@ -193,5 +193,20 @@ function undo() {
         const elCell = document.querySelector(selector)
         elCell.classList.remove('shown')
         elCell.innerHTML = ''
+        if (gBoard[shownCell.i][shownCell.j].isMine&& gMinesLeftCount< gLevel.mines) {
+            gMinesLeftCount++
+            var elMines = document.querySelector('.mines-count')
+            elMines.innerText = gMinesLeftCount
+            if (gLevel.mines > 3) {
+                var elHeart = document.querySelector('.heart')
+                if (gLives === 2) {
+                    gLives++
+                    elHeart.innerHTML = '&#x2665&#x2665&#x2665 '
+                } else if (gLives === 1) {
+                    gLives++
+                    elHeart.innerHTML = '- &#x2665&#x2665  '
+                } else if (gLives === 0) return
+            }
+        }
     }
 }
